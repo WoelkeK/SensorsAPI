@@ -1,6 +1,7 @@
 package pl.medos.sensorApi.service;
 
 import org.springframework.stereotype.Service;
+import pl.medos.sensorApi.model.Sensor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +17,19 @@ public class SensorService {
 
     }
     
-    public void create() {
+    public void create(Sensor sensor) {
 
     }
 
-    public void read() {
+    public void read(Long id) {
 
     }
 
-    public void update() {
+    public void update(Sensor sensor) {
 
     }
 
-    public void delete() {
+    public void delete(Long id) {
 
     }
 }
