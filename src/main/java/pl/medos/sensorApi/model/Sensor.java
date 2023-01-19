@@ -23,12 +23,21 @@ public class Sensor {
     public Sensor() {
     }
 
-    public Sensor(String name, String type, Double readings, String status, Boolean isConnected) {
+    public Sensor(Long id, String name, String type, Double readings, String status, Boolean isConnected) {
+        this.id = id;
         this.name = name;
         this.type = type;
         this.readings = readings;
         this.status = status;
         this.isConnected = isConnected;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -74,11 +83,12 @@ public class Sensor {
     @Override
     public String toString() {
         return "Sensor{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", readings=" + readings +
                 ", status='" + status + '\'' +
-                ", connected=" + isConnected +
+                ", isConnected=" + isConnected +
                 '}';
     }
 }
