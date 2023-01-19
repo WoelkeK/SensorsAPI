@@ -1,0 +1,84 @@
+package pl.medos.sensorApi.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Sensor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String type;
+
+    private Double readings;
+
+    private String status;
+
+    private Boolean isConnected;
+
+
+    public Sensor() {
+    }
+
+    public Sensor(String name, String type, Double readings, String status, Boolean isConnected) {
+        this.name = name;
+        this.type = type;
+        this.readings = readings;
+        this.status = status;
+        this.isConnected = isConnected;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Double getReadings() {
+        return readings;
+    }
+
+    public void setReadings(Double readings) {
+        this.readings = readings;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Boolean getIsConnected() {
+        return isConnected;
+    }
+
+    public void setIsConnected(Boolean isConnected) {
+        this.isConnected = isConnected;
+    }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", readings=" + readings +
+                ", status='" + status + '\'' +
+                ", connected=" + isConnected +
+                '}';
+    }
+}
