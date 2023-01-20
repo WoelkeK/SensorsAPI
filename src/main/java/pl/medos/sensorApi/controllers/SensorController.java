@@ -29,37 +29,40 @@ public class SensorController {
     public List allSensorsList() {
         LOGGER.info("allSensorsList()");
         List allSensors = sensorService.listAll();
-        LOGGER.info("allSensorsList(...)");
+        LOGGER.info("allSensorsList(...)" + allSensors);
         return allSensors;
     }
 
     @PostMapping("/sensor")
-    public void createSensor(@RequestBody Sensor sensor) {
+    public Sensor createSensor(@RequestBody Sensor sensor) {
         LOGGER.info("createSensor(" + sensor + ")");
-        sensorService.create(sensor);
+        Sensor createdSensor = sensorService.create(sensor);
         LOGGER.info("createSensor(...)");
+        return createdSensor;
     }
 
     @GetMapping("/sensor/{id}")
-    public void readSensor(@PathVariable(name = "id") Long id) {
+    public Sensor readSensor(@PathVariable(name = "id") Long id) {
         LOGGER.info("readSensor(" + id + ")");
-        sensorService.read(id);
-        LOGGER.info("readSensor(...)");
+        Sensor readedSensor = sensorService.read(id);
+        LOGGER.info("readSensor(...) " + readedSensor);
+        return readedSensor;
     }
 
-    @PatchMapping("/sensor")
-    public void updateSensor(@RequestBody Sensor sensor) {
+    @PutMapping("/sensor")
+    public Sensor updateSensor(@RequestBody Sensor sensor) {
         LOGGER.info("updateSensor(" + sensor + ")");
-        sensorService.update(sensor);
-        LOGGER.info("updateSensor(...)");
+        Sensor updatedSensor = sensorService.update(sensor);
+        LOGGER.info("updateSensor(...) " + updatedSensor);
+        return updatedSensor;
 
     }
 
     @DeleteMapping("/sensor/{id}")
-    public void deleteSensor(@PathVariable(name = "id") Long id) {
+    public String deleteSensor(@PathVariable(name = "id") Long id) {
         LOGGER.info("deleteSensor(" + id + ")");
-        sensorService.delete(id);
+        String deleteMessage = sensorService.delete(id);
         LOGGER.info("deleteSensor(...)");
-
+        return deleteMessage;
     }
 }

@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.medos.sensorApi.model.Sensor;
 import pl.medos.sensorApi.repository.SensorRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -21,8 +19,10 @@ public class SensorService {
     }
 
     public List listAll() {
-        LOGGER.info("()");
-        return new ArrayList();
+        LOGGER.info("listAll()");
+        List<Sensor> sensorList = sensorRepository.findAll();
+        LOGGER.info("ListAll(...)");
+        return sensorList;
 
     }
 
@@ -44,8 +44,14 @@ public class SensorService {
 
     public Sensor update(Sensor sensor) {
         LOGGER.info("update()");
-        Sensor updatedSensor = sensorRepository.findById(sensor.getId()).orElseThrow();
-        LOGGER.info("update(...)");
+        Sensor editedSensor = sensorRepository.findById(sensor.getId()).orElseThrow();
+        editedSensor.setIsConnected(sensor.getIsConnected());
+        editedSensor.setName(sensor.getName());
+        editedSensor.setReadings(sensor.getReadings());
+        editedSensor.setStatus(sensor.getStatus());
+        editedSensor.setType(sensor.getType());
+        Sensor updatedSensor = sensorRepository.save(editedSensor);
+        LOGGER.info("update(...) " + updatedSensor);
         return updatedSensor;
     }
 
